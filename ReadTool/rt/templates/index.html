@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block head %}
+
+{% endblock %}
+{% set title='首页' %}
+{% block body %}
+    <div class="content">
+        <div class="list">
+            {% for item in list if item.author %}
+                <div class="list-item">
+                    <div class="item-top">
+                        <a class="item-title" href="/list/{{ item.id }}">{{ item.title }}</a>
+                        <div class="item-author">{{ item.author }}</div>
+                    </div>
+
+                    <div class="item-summary"><i>{{ item.summary }}</i></div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="grid">
+            {% for item in list if not item.author %}
+                <a class="grid-item" href="/list/{{ item.id }}">{{ item.title }}</a>
+            {% endfor %}
+        </div>
+    </div>
+    <div>
+        <form method="post" action="/menu">
+            <input class="update" type="submit" value="更新">
+        </form>
+    </div>
+{% endblock %}

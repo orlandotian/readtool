@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block head %}
+
+{% endblock %}
+{% set title='爬取' %}
+{% block body %}
+    <div class="content">
+        <h3>输入网址</h3>
+        <form method="post" action="/crawler">
+            <input type="text" name="url">
+            <input type="submit">
+        </form>
+    </div>
+{% endblock %}

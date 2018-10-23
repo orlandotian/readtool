@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block head %}
+
+{% endblock %}
+{% set title=item.title %}
+{% block body %}
+    <div class="content">
+        <div class="list">
+            <div class="list-item">
+                <div class="item-top">
+                    <div class="item-title">{{ item.title }}</div>
+                    <div class="item-author">{{ item.author }}</div>
+                </div>
+                <div class="item-summary">{{ item.summary }}</div>
+            </div>
+        </div>
+        <div class="grid">
+            <a class="grid-item" href="/detail/{{ page.id }}">{{ page.title }}</a>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,30 @@
+<script src="/static/js/base.js"></script>
+<div>
+    <div class="header">
+        <div class="back" onclick="back()">< 返回</div>
+        <div class="title">{{ title }}</div>
+        <div class="menu" onclick="dropdown()">菜单</div>
+        <div class="menu-content" id="menu-content" style="display: none">
+            <ul>
+                <li><a href="/">首页</a></li>
+                <li><a href="/mine">我的</a></li>
+                <li>关于</li>
+            </ul>
+        </div>
+    </div>
+    {% for message in get_flashed_messages() %}
+        <div class="alert-info">
+            {{ message }}
+        </div>
+    {% endfor %}
+</div>
+<script>
+    function dropdown() {
+        var display = $('#menu-content')[0].style.display;
+        $('#menu-content')[0].style.display = display == "" ? "none" : "";
+    }
+
+    function back() {
+        history.back()
+    }
+</script>

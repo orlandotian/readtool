@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block head %}
+
+{% endblock %}
+{% set title=item.title %}
+{% block body %}
+    <div class="control">
+        <a href="/detail/{{ prev_page.id }}">上一章</a>
+        <div onclick="font_size(+1)">字体+</div>
+        <div onclick="darkmode()">夜间</div>
+        <div onclick="font_size(-1)">字体-</div>
+        <a href="{{ '/detail/%d'%next_page.id if next_page else '#'}}">下一章</a>
+    </div>
+    <div class="content">
+        <h3>{{ item.title }}</h3>
+        <div class="text" id="text" style="font-size: {{ request.cookies.get('font_size', '20') }}px">
+            {{ item.content }}
+        </div>
+        {{ request.cookies.get('history') }}
+    </div>
+    <div class="control">
+        <a href="/detail/{{ prev_page.id }}">上一章</a>
+        <div onclick="font_size(+1)">字体+</div>
+        <div onclick="darkmode()">夜间</div>
+        <div onclick="font_size(-1)">字体-</div>
+        <a href="{{ '/detail/%d'%next_page.id if next_page else '#'}}">下一章</a>
+    </div>
+    <script>
+        var size = {{ request.cookies.get('font_size', '20') }}
+        function font_size(delta) {
+            size = size + delta
+            document.cookie="font_size=" + size
+            $('#text')[0].style.fontSize = size + 'px'
+        }
+
+        var dark = {{ request.cookies.get('dark_mode', false) }}
+        function darkmode() {
+            dark = !dark
+            document.cookie="dark_mode=" + dark
+            render()
+        }
+
+        function render() {
+            $('#text')[0].style.backgroundColor = dark ? '#443232' : '#ffffff'
+            $('#text')[0].style.color = dark ? '#9a7d7d' : '#000000'
+        }
+        render()
+        document.cookie="history=" + {{ item.id }} + "; path=/"
+    </script>
+
+{% endblock %}

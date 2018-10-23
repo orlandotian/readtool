@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/css/base.css">
+    <script src="/static/js/jquery.min.js"></script>
+    {% block head %} {% endblock %}
+    <title>{% block title %}{{ title }}{% endblock %}</title>
+</head>
+<body>
+{% block header %}
+    {% include 'header.html' %}
+{% endblock %}
+{% block body %}
+{% endblock %}
+</body>
+</html>
